@@ -1,0 +1,12 @@
+[
+  {
+    "id": "s93ao6k72ovd4fdhfvn13qzo",
+    "username": "sdsd",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$0tUWIJnhV1DA9QWCDh/TPQ$mhbmmI47I2XExuyYY/xs4T2XehU0riksaDgivZbuWQQ"
+  },
+  {
+    "id": "p8nri2l148bnhyev94fn1j3y",
+    "username": "one",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$kWHO4mDo1Rum9kAcfh9LnA$7p4G6ZTXQR0sP4A4jJNgMORrJsOcODealuIbIk6oaYY"
+  }
+]

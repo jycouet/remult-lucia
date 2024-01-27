@@ -8,5 +8,15 @@
     "id": "p8nri2l148bnhyev94fn1j3y",
     "username": "one",
     "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$kWHO4mDo1Rum9kAcfh9LnA$7p4G6ZTXQR0sP4A4jJNgMORrJsOcODealuIbIk6oaYY"
+  },
+  {
+    "id": "xdu4lwsbuh6d9vbypogpnjhj",
+    "username": "yop",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$gli1s4RoAYxiegyvdwjUCg$jhJHzT2i3gySdPNOeyUUyGupy8Lc+YT7jMg7yMLPLVg"
+  },
+  {
+    "id": "isl0ztxrn8adqw0hzksg4qbo",
+    "username": "",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$ToF94NgTuzZqVkhxqI9kCw$PCBkR6eMdZHvkO6aDshxsvNw31rKXajPT8fvLV6DQi0"
   }
 ]

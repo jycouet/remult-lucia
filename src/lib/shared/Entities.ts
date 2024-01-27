@@ -1,4 +1,4 @@
-import { Entity, Fields } from 'remult';
+import { Entity, Fields, Validators } from 'remult';
 
 @Entity('auth_user', {
 	allowApiCrud: true
@@ -8,7 +8,7 @@ export class AuthUser {
 	id!: string;
 
 	// if you wan github
-	@Fields.string()
+	@Fields.string({ validate: [Validators.unique()] })
 	username!: string;
 	@Fields.string({ includeInApi: false })
 	hashedPassword!: string;

@@ -10,7 +10,7 @@
 </script>
 
 <h1>Sign up</h1>
-<form on:submit={signup}>
+<form on:submit|preventDefault={signup}>
 	<label for="username">Username</label>
 	<input name="username" id="username" bind:value={username} /><br />
 	<label for="password">Password</label>

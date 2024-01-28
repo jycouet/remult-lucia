@@ -95,48 +95,63 @@ const handleAuthSignout: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
-const handleAuthCore: Handle = async ({ event, resolve }) => {
-	const sessionId = event.cookies.get(lucia.sessionCookieName);
+const handleAuthCore: (guards: string[]) => Handle =
+	(guards) =>
+	async ({ event, resolve }) => {
+		const sessionId = event.cookies.get(lucia.sessionCookieName);
 
-	if (!sessionId) {
-		event.locals.user = null;
-		event.locals.session = null;
-		return resolve(event);
-	}
+		if (!sessionId) {
+			event.locals.user = null;
+			event.locals.session = null;
 
-	const { session, user } = await handleRemult.withRemult(
-		{ request: event.request } as any,
-		async () => {
-			const { session, user } = await lucia.validateSession(sessionId);
-			if (session && session.fresh) {
-				const sessionCookie = lucia.createSessionCookie(session.id);
-				// sveltekit types deviates from the de-facto standard
-				// you can use 'as any' too
-				event.cookies.set(sessionCookie.name, sessionCookie.value, {
-					path: '.',
-					...sessionCookie.attributes
-				});
+			if (guards.filter((c) => event.url.pathname.startsWith(c)).length > 0) {
+				redirect(302, '/');
 			}
-			return { session, user };
+
+			return resolve(event);
 		}
-	);
-	if (!session) {
-		const sessionCookie = lucia.createBlankSessionCookie();
-		event.cookies.set(sessionCookie.name, sessionCookie.value, {
-			path: '.',
-			...sessionCookie.attributes
-		});
-	}
-	event.locals.user = user;
-	event.locals.session = session;
 
-	return resolve(event);
+		const { session, user } = await handleRemult.withRemult(
+			{ request: event.request } as any,
+			async () => {
+				const { session, user } = await lucia.validateSession(sessionId);
+				if (session && session.fresh) {
+					const sessionCookie = lucia.createSessionCookie(session.id);
+					// sveltekit types deviates from the de-facto standard
+					// you can use 'as any' too
+					event.cookies.set(sessionCookie.name, sessionCookie.value, {
+						path: '.',
+						...sessionCookie.attributes
+					});
+				}
+				return { session, user };
+			}
+		);
+		if (!session) {
+			const sessionCookie = lucia.createBlankSessionCookie();
+			event.cookies.set(sessionCookie.name, sessionCookie.value, {
+				path: '.',
+				...sessionCookie.attributes
+			});
+		}
+		event.locals.user = user;
+		event.locals.session = session;
+
+		return resolve(event);
+	};
+
+export type HandleAuthOptions = {
+	providers?: {
+		password?: boolean;
+	};
+	guards?: string[];
 };
-
 // the order is key
-export const handleAuth = sequence(
-	handleAuthSignin,
-	handleAuthSignup,
-	handleAuthCore,
-	handleAuthSignout
-);
+export const handleAuth = (options: HandleAuthOptions) => {
+	return sequence(
+		handleAuthSignin,
+		handleAuthSignup,
+		handleAuthCore(options.guards ?? []),
+		handleAuthSignout
+	);
+};

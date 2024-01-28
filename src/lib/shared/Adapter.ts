@@ -6,6 +6,8 @@ export class RemultLuciaAdapter implements Adapter {
 	async getSessionAndUser(
 		sessionId: string
 	): Promise<[session: DatabaseSession | null, user: DatabaseUser | null]> {
+		console.log(`getSessionAndUser`);
+
 		const session = await remult.repo(UserSession).findId(sessionId);
 		if (session) {
 			const user = await remult.repo(AuthUser).findId(session.userId);

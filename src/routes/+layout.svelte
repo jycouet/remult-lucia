@@ -6,7 +6,7 @@
 		{ name: 'Home', href: '/' },
 		{ name: 'Sign Up', href: '/signup' },
 		{ name: 'Sign In', href: '/signin' },
-		{ name: 'Profile', href: '/profile' }
+		{ name: 'Profile', href: '/profile', onlyAuthenticated: true }
 	];
 
 	export let data: LayoutData;
@@ -35,11 +35,15 @@
 </svelte:head>
 
 {#each links as link}
-	<a style="margin-right: 1rem;" href={link.href}>{link.name}</a>
+	{#if !link.onlyAuthenticated || (link.onlyAuthenticated && remult.authenticated())}
+		<a style="margin-right: 1rem;" href={link.href}>{link.name}</a>
+	{/if}
 {/each}
-<button on:click={signout}>Sign Out</button>
+{#if remult.authenticated()}
+	<button on:click={signout}>Sign Out</button>
+{/if}
 
 <hr />
-{remult?.user?.name}
+{remult?.user?.name ?? 'No user signed in'}
 <hr />
 <slot />

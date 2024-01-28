@@ -1,21 +1,16 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
+	import { AuthController } from '$lib/shared/Controllers.js';
 
 	let username = '';
 	let password = '';
 
 	const signin = async () => {
 		try {
-			const result = await fetch('/api/auth/signin', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ username, password })
-			});
+			await AuthController.signin();
 
 			await invalidateAll();
-			console.log(`result.status`, result.status);
+			// console.log(`result.status`, result.status);
 		} catch (error) {
 			alert(error.message);
 		}
@@ -32,8 +27,8 @@
 		type="password"
 		name="password"
 		id="password"
-		autocomplete="current-password"
 		required
+		autocomplete="current-password"
 		bind:value={password}
 		minlength="6"
 	/><br />

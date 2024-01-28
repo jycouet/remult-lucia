@@ -24,8 +24,17 @@
 <h1>Sign Up</h1>
 <form on:submit|preventDefault={signup}>
 	<label for="username">Username</label>
-	<input name="username" id="username" bind:value={username} required /><br />
+	<input name="username" id="username" autocomplete="username" bind:value={username} required /><br
+	/>
 	<label for="password">Password</label>
-	<input type="password" name="password" id="password" required bind:value={password} /><br />
+	<input
+		type="password"
+		name="password"
+		id="password"
+		required
+		autocomplete="current-password"
+		bind:value={password}
+		minlength="6"
+	/><br />
 	<button>Continue</button>
 </form>

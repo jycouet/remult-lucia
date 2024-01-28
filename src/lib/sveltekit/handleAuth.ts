@@ -145,6 +145,7 @@ export type HandleAuthOptions = {
 		password?: boolean;
 	};
 	guards?: string[];
+	// TODO
 };
 // the order is key
 export const handleAuth = (options: HandleAuthOptions) => {

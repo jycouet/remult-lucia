@@ -6,6 +6,9 @@ import { remultSveltekit } from 'remult/remult-sveltekit';
 export const handleRemult = remultSveltekit({
 	logApiEndPoints: false,
 	getUser,
+	// initRequest: async (event, options) => {
+	// 	console.log(`options`, options);
+	// },
 	entities: entities,
 	controllers: []
 });

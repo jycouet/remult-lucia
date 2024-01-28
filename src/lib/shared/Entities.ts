@@ -1,7 +1,8 @@
 import { Entity, Fields, Validators } from 'remult';
 
 @Entity('auth_user', {
-	allowApiCrud: true
+	// allowApiCrud: true,
+	dbName: 'auth.auth_user'
 })
 export class AuthUser {
 	@Fields.cuid()
@@ -10,8 +11,8 @@ export class AuthUser {
 	@Fields.string<AuthUser>({
 		validate: [
 			Validators.unique(),
-			(task) => {
-				if (task.username.length < 2) throw 'Must be at least 2 characters long';
+			(e) => {
+				if (e.username.length < 2) throw 'Must be at least 2 characters long';
 			}
 		]
 	})
@@ -21,7 +22,8 @@ export class AuthUser {
 }
 
 @Entity('user_session', {
-	allowApiCrud: true
+	// allowApiCrud: true
+	dbName: 'auth.user_session'
 })
 export class UserSession {
 	@Fields.cuid()

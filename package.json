@@ -59,7 +59,7 @@
 		"lucia": "^3.0.0",
 		"oslo": "^1.0.2",
 		"pg": "^8.11.3",
-		"remult": "^0.25.4",
+		"remult": "^0.25.5-exp.12",
 		"vite-plugin-stripper": "^0.3.2"
 	}
 }

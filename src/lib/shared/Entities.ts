@@ -7,8 +7,14 @@ export class AuthUser {
 	@Fields.cuid()
 	id!: string;
 
-	// if you wan github
-	@Fields.string({ validate: [Validators.unique()] })
+	@Fields.string<AuthUser>({
+		validate: [
+			Validators.unique(),
+			(task) => {
+				if (task.username.length < 2) throw 'Must be at least 2 characters long';
+			}
+		]
+	})
 	username!: string;
 	@Fields.string({ includeInApi: false })
 	hashedPassword!: string;

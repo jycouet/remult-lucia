@@ -1,27 +1,40 @@
 import type { Adapter, DatabaseSession, DatabaseUser } from 'lucia';
+import { remult } from 'remult';
+import { AuthUser, UserSession } from './Entities.js';
 
 export class RemultLuciaAdapter implements Adapter {
-	getSessionAndUser(
+	async getSessionAndUser(
 		sessionId: string
 	): Promise<[session: DatabaseSession | null, user: DatabaseUser | null]> {
-		throw new Error('Method not implemented.');
+		const session = await remult.repo(UserSession).findId(sessionId);
+		if (session) {
+			const user = await remult.repo(AuthUser).findId(session.userId);
+			return [
+				{ ...session, attributes: {} },
+				{ ...user, attributes: { username: user.username } }
+			];
+		}
+		return [null, null];
 	}
-	getUserSessions(userId: string): Promise<DatabaseSession[]> {
-		throw new Error('Method not implemented.');
+	async getUserSessions(userId: string): Promise<DatabaseSession[]> {
+		throw new Error('getUserSessions Method not implemented.');
 	}
-	setSession(session: DatabaseSession): Promise<void> {
-		throw new Error('Method not implemented.');
+	async setSession(session: DatabaseSession): Promise<void> {
+		await remult.repo(UserSession).insert(session);
 	}
-	updateSessionExpiration(sessionId: string, expiresAt: Date): Promise<void> {
-		throw new Error('Method not implemented.');
+	async updateSessionExpiration(sessionId: string, expiresAt: Date): Promise<void> {
+		throw new Error('updateSessionExpiration Method not implemented.');
 	}
-	deleteSession(sessionId: string): Promise<void> {
-		throw new Error('Method not implemented.');
+	async deleteSession(sessionId: string): Promise<void> {
+		await remult.repo(UserSession).delete(sessionId);
 	}
-	deleteUserSessions(userId: string): Promise<void> {
-		throw new Error('Method not implemented.');
+	async deleteUserSessions(userId: string): Promise<void> {
+		throw new Error('deleteUserSessions Method not implemented.');
 	}
-	deleteExpiredSessions(): Promise<void> {
-		throw new Error('Method not implemented.');
+	async deleteExpiredSessions(): Promise<void> {
+		const all = await remult.repo(UserSession).find({ where: { expiresAt: { $lt: new Date() } } });
+		for (const s of all) {
+			await remult.repo(UserSession).delete(s);
+		}
 	}
 }

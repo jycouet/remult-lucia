@@ -4,9 +4,9 @@
 	let username = '';
 	let password = '';
 
-	const signup = async () => {
+	const signin = async () => {
 		try {
-			const result = await fetch('/api/auth/signup', {
+			const result = await fetch('/api/auth/signin', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -21,8 +21,8 @@
 	};
 </script>
 
-<h1>Sign Up</h1>
-<form on:submit|preventDefault={signup}>
+<h1>Sign In</h1>
+<form on:submit|preventDefault={signin}>
 	<label for="username">Username</label>
 	<input name="username" id="username" bind:value={username} required /><br />
 	<label for="password">Password</label>

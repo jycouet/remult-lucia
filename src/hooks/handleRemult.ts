@@ -1,6 +1,6 @@
-import { AuthController } from '$lib/shared/Controllers.js';
-import { entities } from '$lib/shared/Entities.js';
-import { getUser } from '$lib/sveltekit/getUser.js';
+import { getUser } from '$lib/auth/getUser.js';
+import { AuthController } from '$lib/auth/shared/Controllers.js';
+import { entities } from '$lib/auth/shared/Entities.js';
 import { remult } from 'remult';
 import { remultSveltekit } from 'remult/remult-sveltekit';
 

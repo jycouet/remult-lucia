@@ -17,6 +17,7 @@ export class AuthUser {
 		]
 	})
 	username!: string;
+
 	@Fields.string({ includeInApi: false })
 	hashedPassword!: string;
 }
@@ -25,7 +26,7 @@ export class AuthUser {
 	// allowApiCrud: true
 	dbName: 'auth.user_session'
 })
-export class UserSession {
+export class AuthUserSession {
 	@Fields.cuid()
 	id!: string;
 
@@ -36,4 +37,4 @@ export class UserSession {
 	userId!: string;
 }
 
-export const entities = [AuthUser, UserSession];
+export const entities = [AuthUser, AuthUserSession];

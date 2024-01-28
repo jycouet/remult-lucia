@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { AuthController } from '$lib/shared/Controllers.js';
+	import { AuthController } from '$lib/auth/shared/Controllers.js';
 
 	let username = '';
 	let password = '';

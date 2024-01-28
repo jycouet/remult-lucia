@@ -1,0 +1,12 @@
+[
+  {
+    "id": "pbmvl15lpftf7so9qzzzjnft",
+    "username": "hello",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$7rVqLhRuHVO525ypFquF9Q$H2uaEVUgLmVZxpqa2IAwSbiDoG5cvBBaQKCprArC3FE"
+  },
+  {
+    "id": "lwcbbks7ih0dn2zh9olxzewl",
+    "username": "jyc",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$aQKnUfGTtycyL0Tym+saEw$seyb8w/YFfl5tCnCl2IvEqDlfS9eUkVHTveZLvYsvGU"
+  }
+]

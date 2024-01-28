@@ -6,7 +6,7 @@
 		{ name: 'Home', href: '/' },
 		{ name: 'Sign Up', href: '/signup' },
 		{ name: 'Sign In', href: '/signin' },
-		{ name: 'Profile', href: '/profile', onlyAuthenticated: true }
+		{ name: 'Profile', href: '/app', onlyAuthenticated: true }
 	];
 
 	export let data: LayoutData;

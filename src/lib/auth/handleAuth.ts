@@ -1,11 +1,11 @@
-import { lucia } from '$lib/initLucia.js';
-import { AuthUser } from '$lib/shared/Entities.js';
+import { lucia } from '$lib/auth/initLucia.js';
 import { redirect, type Handle, fail } from '@sveltejs/kit';
 
 import { sequence } from '@sveltejs/kit/hooks';
 import { Argon2id } from 'oslo/password';
 import { remult } from 'remult';
 import { handleRemult } from '../../hooks/handleRemult.js';
+import { AuthUser } from './shared/Entities.js';
 
 const handleAuthSignup: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname === '/api/auth/signup') {

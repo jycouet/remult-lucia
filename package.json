@@ -1,5 +1,5 @@
 {
-	"name": "remult-lucia",
+	"name": "myway",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -27,6 +27,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
+		"remult": "^0.25.5-exp.12",
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
@@ -41,6 +42,7 @@
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
+		"pg": "^8.11.3",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"publint": "^0.1.9",
@@ -58,8 +60,6 @@
 		"arctic": "^1.1.0",
 		"lucia": "^3.0.0",
 		"oslo": "^1.0.2",
-		"pg": "^8.11.3",
-		"remult": "^0.25.5-exp.12",
 		"vite-plugin-stripper": "^0.3.2"
 	}
 }

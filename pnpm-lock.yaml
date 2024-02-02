@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.0.2
     version: 1.0.2
   remult:
-    specifier: ^0.25.5-exp.12
-    version: 0.25.5-exp.12
+    specifier: ^0.25.5-exp.21
+    version: 0.25.5-exp.21
   vite-plugin-stripper:
     specifier: ^0.3.2
     version: 0.3.2
@@ -2727,8 +2727,8 @@ packages:
     resolution: {integrity: sha512-ZhYeb6nRaXCfhnndflDK8qI6ZQ/YcWZCISRAWICW9XYqMUwjZM9Z0DveWX/ABN01oxSHwVxKQmxeYZSsm0jh5A==}
     dev: false
 
-  /remult@0.25.5-exp.12:
-    resolution: {integrity: sha512-J6KkEr9bcVhYoOTEVvGG32L+OxUljU+mLGGysCNMorGQQtAPrl6+qph2NlQQCur3rgSh1YqrZAVpytvej0nccw==}
+  /remult@0.25.5-exp.21:
+    resolution: {integrity: sha512-XrlEGI3GTqyp1iO2myKWYjuUGztJC231dTdf+J8yBMLYTE5+caH8c6gvsBgBxjqwn2nBqU/nC1dE1U0YOcQLVw==}
     dependencies:
       '@paralleldrive/cuid2': 2.2.2
       reflect-metadata: 0.1.14

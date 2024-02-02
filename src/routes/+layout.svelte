@@ -1,7 +1,10 @@
 <script lang="ts">
+	// import { remult } from 'remult';
+	// import type { LayoutData } from './$types.js';
+	import { invalidateAll } from '$app/navigation';
 	import { remult } from 'remult';
 	import type { LayoutData } from './$types.js';
-	import { invalidateAll } from '$app/navigation';
+	import { AuthController } from '$lib/auth/shared/Controllers.js';
 	const links = [
 		{ name: 'Home', href: '/' },
 		{ name: 'Sign Up', href: '/signup' },
@@ -10,18 +13,12 @@
 	];
 
 	export let data: LayoutData;
-	$: remult.user = data.user;
+	// $: remult.user = data.user;
 
 	const signout = async () => {
 		try {
-			const result = await fetch('/api/auth/signout', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
+			AuthController.signout();
 			await invalidateAll();
-			console.log(`result.status`, result.status);
 		} catch (error) {
 			alert(error.message);
 		}
@@ -35,15 +32,15 @@
 </svelte:head>
 
 {#each links as link}
-	{#if !link.onlyAuthenticated || (link.onlyAuthenticated && remult.authenticated())}
-		<a style="margin-right: 1rem;" href={link.href}>{link.name}</a>
-	{/if}
+	<!-- {#if !link.onlyAuthenticated || (link.onlyAuthenticated && remult.authenticated())}
+		{/if} -->
+	<a style="margin-right: 1rem;" href={link.href}>{link.name}</a>
 {/each}
-{#if remult.authenticated()}
-	<button on:click={signout}>Sign Out</button>
-{/if}
+<!-- {#if remult.authenticated()}
+	{/if} -->
+<button on:click={signout}>Sign Out</button>
 
 <hr />
-{remult?.user?.name ?? 'No user signed in'}
+<!-- {remult?.user?.name ?? 'No user signed in'} -->
 <hr />
 <slot />

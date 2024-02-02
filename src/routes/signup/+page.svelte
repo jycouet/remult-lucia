@@ -1,20 +1,12 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
+	import { AuthController } from '$lib/auth/shared/Controllers.js';
 
-	let username = '';
-	let password = '';
+	let username = 'aaa';
+	let password = 'aaaaaa';
 
 	const signup = async () => {
 		try {
-			const result = await fetch('/api/auth/signup', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ username, password })
-			});
-			await invalidateAll();
-			console.log(`result.status`, result.status);
+			await AuthController.signup(username, password);
 		} catch (error) {
 			alert(error.message);
 		}

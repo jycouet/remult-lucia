@@ -27,7 +27,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"remult": "^0.25.5-exp.12",
+		"remult": "^0.25.5-exp.21",
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {

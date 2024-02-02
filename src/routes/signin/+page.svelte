@@ -8,6 +8,7 @@
 	const signin = async () => {
 		try {
 			await AuthController.signin(username, password);
+			await invalidateAll();
 		} catch (error) {
 			alert(error.message);
 		}

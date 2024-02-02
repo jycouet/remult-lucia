@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import { AuthController } from '$lib/auth/shared/Controllers.js';
 
 	let username = 'aaa';
@@ -7,6 +8,7 @@
 	const signup = async () => {
 		try {
 			await AuthController.signup(username, password);
+			await invalidateAll();
 		} catch (error) {
 			alert(error.message);
 		}

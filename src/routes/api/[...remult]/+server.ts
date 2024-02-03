@@ -7,8 +7,19 @@ import { remultSveltekit } from 'remult/remult-sveltekit';
 
 export const _api = remultSveltekit({
 	logApiEndPoints: false,
+	admin: true,
+	getUser: async (event) => {
+		const sessionId = event.cookies.get(lucia.sessionCookieName);
+		console.log(`remult getUser    `, sessionId);
+		if (sessionId) {
+			const { user } = await lucia.validateSession(sessionId);
+			return user ? { id: user.id, name: user.username, roles: [] } : undefined;
+		}
+		return undefined;
+	},
 	initRequest: async (event) => {
 		const sessionId = event.cookies.get(lucia.sessionCookieName);
+		console.log(`remult initRequest`, sessionId);
 
 		remult.context.setHeaders = (headers) => {
 			event.setHeaders(headers);

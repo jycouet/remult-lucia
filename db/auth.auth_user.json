@@ -8,5 +8,10 @@
     "id": "lwcbbks7ih0dn2zh9olxzewl",
     "username": "jyc",
     "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$aQKnUfGTtycyL0Tym+saEw$seyb8w/YFfl5tCnCl2IvEqDlfS9eUkVHTveZLvYsvGU"
+  },
+  {
+    "id": "xf2zlel7nlgn6rvd37mfrch0",
+    "username": "aaa",
+    "hashedPassword": "$argon2id$v=19$m=19456,t=2,p=1$ubOyuiq8lHIliHLFyiR0gQ$0WIz2QMKJ2eO5mea5MzQufyo+znCATnzk0iRLD7zd+8"
   }
 ]

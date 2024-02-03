@@ -13,7 +13,9 @@
 	];
 
 	export let data: LayoutData;
-	$: remult.user = data.user;
+	console.log(`kit +layout.svelte`, data);
+
+	// $: remult.user = data.user;
 
 	const signout = async () => {
 		try {
@@ -32,15 +34,15 @@
 </svelte:head>
 
 {#each links as link}
-	{#if !link.onlyAuthenticated || (link.onlyAuthenticated && remult.authenticated())}
-		<a style="margin-right: 1rem;" href={link.href}>{link.name}</a>
-	{/if}
+	<!-- {#if !link.onlyAuthenticated || (link.onlyAuthenticated && remult.authenticated())} -->
+	<a style="margin-right: 1rem;" href={link.href}>{link.name}</a>
+	<!-- {/if} -->
 {/each}
-{#if remult.authenticated()}
-	<button on:click={signout}>Sign Out</button>
-{/if}
+<!-- {#if remult.authenticated()} -->
+<button on:click={signout}>Sign Out</button>
+<!-- {/if} -->
 
 <hr />
-{remult?.user?.name ?? 'No user signed in'}
+<!-- {remult?.user?.name ?? 'No user signed in'} -->
 <hr />
 <slot />

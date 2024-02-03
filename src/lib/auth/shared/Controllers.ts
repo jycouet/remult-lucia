@@ -59,4 +59,9 @@ export class AuthController {
 		}
 		remult.context.deleteCookie(lucia.sessionCookieName, { path: '/' });
 	}
+
+	@BackendMethod({ allowed: true })
+	static async getCurrentUser() {
+		return remult.user;
+	}
 }

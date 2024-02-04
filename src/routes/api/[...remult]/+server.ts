@@ -8,18 +8,9 @@ import { remultSveltekit } from 'remult/remult-sveltekit';
 export const _api = remultSveltekit({
 	logApiEndPoints: false,
 	admin: true,
-	getUser: async (event) => {
-		const sessionId = event.cookies.get(lucia.sessionCookieName);
-		console.log(`remult getUser    `, sessionId);
-		if (sessionId) {
-			const { user } = await lucia.validateSession(sessionId);
-			return user ? { id: user.id, name: user.username, roles: [] } : undefined;
-		}
-		return undefined;
-	},
 	initRequest: async (event) => {
 		const sessionId = event.cookies.get(lucia.sessionCookieName);
-		console.log(`remult initRequest`, sessionId);
+		console.log(`remult initRe`, { sessionId });
 
 		remult.context.setHeaders = (headers) => {
 			event.setHeaders(headers);
@@ -49,7 +40,12 @@ export const _api = remultSveltekit({
 	controllers: [AuthController]
 });
 
-export const { GET, POST, PUT, DELETE } = _api;
+export const { GET, PUT, DELETE } = _api;
+export const POST = async (event: RequestEvent) => {
+	console.log(`+server POST `, event.url.pathname, new Date());
+
+	return _api.POST(event);
+};
 
 export const _getUserOnServer = async (event: RequestEvent) => {
 	const sessionId = event.cookies.get(lucia.sessionCookieName);
